@@ -16,7 +16,7 @@ The __lexical analyzer__ or __scanner__ is the first phase of the translation pr
 - Keywords: `int, float, string, void, if, else, for, while, read, write, return`
 - Special symbols: `'+', '-', '*', '/', '<', '>', '=', '!', ';', ',', '"', '.', '(', ')', '[', ']', '{', '}', '<=', '>=', '==', '!='`
 - Symbol tables: `'IDENTIFIER', 'INT_CONST', 'FLOAT_CONST', 'STRING', 'COMMENT'`
-
+---
 ### Usage
 1. Choose a test file (or test files) from one of the files inside the `test` directory of the project. 
 
