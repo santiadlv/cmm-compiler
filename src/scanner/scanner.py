@@ -1,8 +1,8 @@
 import sys
 from pathlib import Path
 
-from tokens import Tokens
-from transition_table import TransitionTable
+from .tokens import Tokens
+from .transition_table import TransitionTable
 
 
 class Scanner:
@@ -252,6 +252,7 @@ class Scanner:
         print("\n" + "=" * 30)
         print(f"Results for file: '{filename}'")
         print("=" * 30 + "\n")
+        print(f"TOKEN_IDS: {cls.token_helper.token_ids}\n")
         print(f"OUTPUT: {output}\n")
         print(f"IDS (34): {ids}\n")
         print(f"INTS (35): {ints}\n")
