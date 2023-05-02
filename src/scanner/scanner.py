@@ -32,7 +32,7 @@ class Scanner:
         cls.token_helper: Tokens = Tokens()
         cls.automaton: TransitionTable = TransitionTable()
         cls.filename: str = filename
-        cls.path: Path = Path.cwd().joinpath("test", cls.filename)
+        cls.path: Path = Path.cwd().joinpath("test", "examples", cls.filename)
         cls.id_symbol_table: dict = {}
         cls.int_symbol_table: dict = {}
         cls.float_symbol_table: dict = {}
