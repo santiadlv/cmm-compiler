@@ -1,0 +1,12 @@
+void main(int x, int y){
+    x = x*5;
+    y = y/2;
+
+    if (x >// y){
+        x = y
+    }
+    else {
+        x = x
+    }
+    return;
+}
