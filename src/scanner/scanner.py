@@ -90,7 +90,7 @@ class Scanner:
 
     def scan(cls) -> tuple[list, dict, dict, dict, dict, dict]:
         """
-        Scan method responsible for retrieving, identifying and saving tokens from the 
+        Scan method responsible for retrieving, identifying and saving tokens from the
         source file specified.
 
         Raises
@@ -150,7 +150,7 @@ class Scanner:
                 # Break loop if tokens are depleted and state is not active
                 if not char and token == "" and not dfa.is_active_state(state):
                     break
-                
+
                 # Check if state is a final accepting state
                 if dfa.is_acceptor_state(state):
                     # If state is consuming and char is not blank, set lookbehind
@@ -203,7 +203,7 @@ class Scanner:
                     # Reset both state and token variables for next character
                     state = 0
                     token = ""
-                    
+
                 elif dfa.is_incomplete_comment(state):
                     raise Exception(
                         f"ERROR: Incorrectly closed comment in line {line - cmt_offset}"
@@ -227,16 +227,17 @@ class Scanner:
             cls.string_symbol_table,
             cls.comment_symbol_table,
         )
-        
+
     def export(
         cls,
         filename: str,
-        output: list, 
-        ids: dict, 
-        ints: dict, 
-        floats: dict, 
-        strings: dict, 
-        comments: dict) -> None:
+        output: list,
+        ids: dict,
+        ints: dict,
+        floats: dict,
+        strings: dict,
+        comments: dict,
+    ) -> None:
         """
         Print output and symbol tables to stdout.
 
@@ -260,6 +261,51 @@ class Scanner:
         print(f"STRINGS (37): {strings}\n")
         print(f"COMMENTS (38): {comments}\n")
 
+    def export_to_file(
+        cls,
+        filename: str,
+        output: list,
+        ids: dict,
+        ints: dict,
+        floats: dict,
+        strings: dict,
+        comments: dict,
+    ) -> None:
+        """
+        Print output and symbol tables to a file.
+
+        Args:
+            filename (str): Name of the file to be analyzed
+            output (list): Output list with all identified tokens
+            ids (dict): Symbol table with identifiers
+            ints (dict): Symbol table with integer constants
+            floats (dict): Symbol table with floating gpoint constants
+            strings (dict): Symbol table with strings
+            comments (dict): Symbol table with comments
+        """
+        prev_stdout = sys.stdout
+
+        output_filename = f"{filename}_output.txt"
+        output_file = Path.cwd().joinpath("output", output_filename)
+
+        with open(output_file, "w", encoding="utf-8") as file:
+            sys.stdout = file
+
+            print("=" * 30)
+            print(f"Results for file: '{filename}'")
+            print("=" * 30 + "\n")
+            print(f"TOKEN_IDS: {cls.token_helper.token_ids}\n")
+            print(f"OUTPUT: {output}\n")
+            print(f"IDS (34): {ids}\n")
+            print(f"INTS (35): {ints}\n")
+            print(f"FLOATS (36): {floats}\n")
+            print(f"STRINGS (37): {strings}\n")
+            print(f"COMMENTS (38): {comments}\n")
+
+            sys.stdout = prev_stdout
+
+        return output_filename
+
 
 if __name__ == "__main__":
     filenames = sys.argv[1:]
@@ -267,9 +313,12 @@ if __name__ == "__main__":
         for filename in filenames:
             cmm_scanner = Scanner(filename)
             output, ids, ints, floats, strings, comments = cmm_scanner.scan()
-            cmm_scanner.export(filename, output, ids, ints, floats, strings, comments)
+            output_file = cmm_scanner.export_to_file(
+                filename, output, ids, ints, floats, strings, comments
+            )
+            print(f"Output file for '{filename}' can be found at /output/{output_file}")
     except FileNotFoundError:
         print(
-            f"No such file or directory: '{filename}'. File could not be found in test"\
+            f"No such file or directory: '{filename}'. File could not be found in test"
             f" folder. Please try again."
-        ) 
+        )
