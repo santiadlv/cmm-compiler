@@ -146,6 +146,13 @@ class Scanner:
 
                     if not tkn.is_blank(char) or dfa.is_active_state(state):
                         token += char
+                        
+                    # If last char and state is in incomplete comment, break the loop
+                    if not char and (
+                        dfa.is_incomplete_comment(state)
+                        or dfa.is_incomplete_string(state)
+                    ):
+                        break
 
                 # Break loop if tokens are depleted and state is not active
                 if not char and token == "" and not dfa.is_active_state(state):
