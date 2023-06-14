@@ -1,0 +1,63 @@
+First+( P -> D void ID ( void ) { L S return ; } )={ int float string void ε $ }
+First+( D -> E D )={ int float string void }
+First+( D -> ε )={ ε }
+First+( E -> T ID V' )={ int float string }
+First+( E -> T ID ( N ) { L S return F G' H' I' ; } )={ ε }
+First+( E -> void ID ( N ) { L S return ; } )={ void }
+First+( V' -> ; )={ ; }
+First+( V' -> [ INTEGER ] ; )={ [ }
+First+( T -> int )={ int }
+First+( T -> float )={ float }
+First+( T -> string )={ string }
+First+( N -> T ID C' B' )={ int float string }
+First+( N -> void )={ void }
+First+( B' -> , T ID C' B' )={ , }
+First+( B' -> ε )={ ε ) }
+First+( C' -> [ ] )={ [ }
+First+( C' -> ε )={ ε ) }
+First+( L -> T ID V' L )={ int float string }
+First+( L -> ε )={ ε ID { if while return read write } }
+First+( S -> J S )={ ID { if while return read write }
+First+( S -> ε )={ ε } }
+First+( J -> ID K' = M' )={ ID }
+First+( J -> O )={ ε }
+First+( J -> { L S } )={ { }
+First+( J -> if ( F G' H' I' ) J Q' )={ if }
+First+( J -> while ( F G' H' I' ) J )={ while }
+First+( J -> return R' )={ return }
+First+( J -> read ID K' ; )={ read }
+First+( J -> write F G' H' I' ; )={ write }
+First+( M' -> F G' H' I' ; )={ ( ID INTEGER FLOAT }
+First+( M' -> STRING ; )={ STRING }
+First+( Q' -> else J )={ else }
+First+( Q' -> ε )={ ID { if while return read write } ε }
+First+( R' -> ; )={ ; }
+First+( R' -> F G' H' I' ; )={ { ( ID INTEGER FLOAT } }
+First+( K' -> [ F G' H' ] )={ [ }
+First+( K' -> ε )={ = * / + - <= < > >= == != ; ) ] , ε }
+First+( I' -> U F G' H' )={ <= < > >= == != }
+First+( I' -> ε )={ ; ) ε }
+First+( U -> <= )={ <= }
+First+( U -> < )={ < }
+First+( U -> > )={ > }
+First+( U -> >= )={ >= }
+First+( U -> == )={ == }
+First+( U -> != )={ != }
+First+( H' -> ε )={ <= < > >= == != ; ) ] , ε }
+First+( H' -> W F G' H' )={ + - }
+First+( W -> - )={ - }
+First+( W -> + )={ + }
+First+( G' -> ε )={ + - <= < > >= == != ; ) ] , ε }
+First+( G' -> Y F G' )={ * / }
+First+( Y -> /  )={ / }
+First+( Y -> *  )={ * }
+First+( F -> Z )={ INTEGER FLOAT }
+First+( F -> O )={ ID }
+First+( F -> ID K' )={ ε }
+First+( F -> ( F G' H' ) )={ ( }
+First+( Z -> FLOAT )={ FLOAT }
+First+( Z -> INTEGER )={ INTEGER }
+First+( O -> ID ( F G' H' A' ) ; )={ ID }
+First+( O -> ID ( ) ; )={ ε }
+First+( A' -> , F G' H' A' )={ , }
+First+( A' -> ε )={ ) ε }
