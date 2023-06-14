@@ -200,9 +200,9 @@ class Scanner:
                         # If token is a comment, persist and reset offset
                         cmt_offset = 0
                         cls.add_token_to_symbol_table(token, cls.comment_symbol_table)
-                        cls.add_symbol_to_output(
-                            token, cls.comment_symbol_table, "COMMENT"
-                        )
+                        # cls.add_symbol_to_output(
+                        #     token, cls.comment_symbol_table, "COMMENT"
+                        # )
                     else:
                         # Search the token's ID and persist to output
                         cls.output.append((tkn.token_ids[token]))
@@ -312,20 +312,3 @@ class Scanner:
             sys.stdout = prev_stdout
 
         return output_filename
-
-
-if __name__ == "__main__":
-    filenames = sys.argv[1:]
-    try:
-        for filename in filenames:
-            cmm_scanner = Scanner(filename)
-            output, ids, ints, floats, strings, comments = cmm_scanner.scan()
-            output_file = cmm_scanner.export_to_file(
-                filename, output, ids, ints, floats, strings, comments
-            )
-            print(f"Output file for '{filename}' can be found at /output/{output_file}")
-    except FileNotFoundError:
-        print(
-            f"No such file or directory: '{filename}'. File could not be found in test"
-            f" folder. Please try again."
-        )
