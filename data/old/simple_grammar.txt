@@ -1,0 +1,25 @@
+P->D void ID (void) { L S return ; }
+D->E D | ε
+E->T ID V' | T ID ( N ) { L S return F G' H' I' ;} | void ID ( N ) { L S return ; }
+V'->; | [ INTEGER ] ;
+T->int | float | string
+N->T ID C' B' | void
+B'->, T ID C' B' | ε
+C'->[ ] | ε
+L->T ID V' L | ε
+S->J S | ε
+J->ID K' = M' | O | { L S } | if ( F G' H' I' ) J Q' | while ( F G' H' I' ) J | return R' | read ID K' ; | write F G' H' I' ;
+M'->F G' H' I' ; | STRING ;
+Q'->else J | ε
+R'->; | F G' H' I' ;
+K'->[ F G' H' ] | ε
+I'->U F G' H' | ε
+U-><= | < | > | >= | == | !=
+H'->W F G' H' | ε
+W->+ | -
+G'->Y F G' | ε
+Y->* | /
+F->( F G' H' ) | ID K' | O | Z
+Z->INTEGER | FLOAT
+O->ID ( F G' H' A' ); | ID ();
+A'->, F G' H' A ' | ε

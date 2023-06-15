@@ -1,25 +1,33 @@
-P->D void ID (void) { L S return ; }
-D->E D | ε
-E->T ID V' | T ID ( N ) { L S return F G' H' I' ;} | void ID ( N ) { L S return ; }
-V'->; | [ INTEGER ] ;
-T->int | float | string
-N->T ID C' B' | void
-B'->, T ID C' B' | ε
-C'->[ ] | ε
-L->T ID V' L | ε
-S->J S | ε
-J->ID K' = M' | O | { L S } | if ( F G' H' I' ) J Q' | while ( F G' H' I' ) J | return R' | read ID K' ; | write F G' H' I' ;
-M'->F G' H' I' ; | STRING ;
-Q'->else J | ε
-R'->; | F G' H' I' ;
-K'->[ F G' H' ] | ε
-I'->U F G' H' | ε
-U-><= | < | > | >= | == | !=
-H'->W F G' H' | ε
-W->+ | -
-G'->Y F G' | ε
-Y->* | /
-F->( F G' H' ) | ID K' | O | Z
-Z->INTEGER | FLOAT
-O->ID ( F G' H' A' ); | ID ();
-A'->, F G' H' A ' | ε
+S->A void ID ( void ) H
+A->B A | ε
+B->D ID B' | void ID ( E ) H
+B'->C' | ( E ) { I J return P ; }
+C->D ID C'
+C'->; | [ INTEGER ] ;
+D->int | float | string
+E->D ID G F | void
+F->, D ID G F | ε
+G->[ ] | ε
+H->{ I J return ; }
+I->C I | ε
+J->K J | ε
+K->ID K' | { I J } | if ( P ) K M | while ( P ) K | return N | read ID O | write P ;
+K'->O = L | ( X ) ;
+L->P ; | STRING ;
+M->else K | ε
+N->; | P ;
+O->[ R ] | ε
+P->R P'
+P'->Q R | ε
+Q-><= | < | > | >= | == | !=
+R->T R'
+R'->Z T R' | ε
+Z->+ | -
+T->V T'
+T'->U V T' | ε
+U->* | /
+V->( R ) | ID V' | W
+V'->[ R ] | ( X ) ; | ε
+W->INTEGER | FLOAT
+X->R Y | ε
+Y->, R Y | ε

@@ -1,0 +1,25 @@
+Follow(P) = { $ }
+Follow(D) = { void }
+Follow(E) = { int, float, string, void }
+Follow(V') = { int, float, string, void, ID, { , if, while, return, read, write, "}"  }
+Follow(T) = { ID }
+Follow(N) = { ) }
+Follow(B') = { ) }
+Follow(C') = {",", ) }
+Follow(L) = {  ID, { , if, while, return, read, write, "}" }
+Folllow(S) = { return, "}" }
+Follow(J) = { ID, "{" , if, while, return, read, write, "}", else }
+Follow(M') = { ID, "{" , if, while, return, read, write, "}", else }
+Follow(Q') = { ID, "{" , if, while, return, read, write, "}", else }
+Follow(R') = { ID, "{" , if, while, return, read, write, "}", else }
+Follow(K') = { =, *, / , + , - , <=, <, >, >=, ==, !=, ";" , ) , ] , "," }
+Follow(I') = { ";" , ) }
+Follow(U) = { ( , ID, INTEGER, FLOAT }
+Follow(H') = { <=, <, >, >=, ==, !=, ";" , ) , ] , "," }
+Follow(W) = { ( , ID, INTEGER, FLOAT }
+Follow(G') = { + , - , <=, <, >, >=, ==, !=, ";" , ) , ] , "," }
+Follow(Y) = { ( , ID, INTEGER, FLOAT }
+Follow(F) = { *, / , + , - , <=, <, >, >=, ==, !=, ";" , ) , ] , "," }
+Follow(Z) = { *, / , + , - , <=, <, >, >=, ==, !=, ";" , ) , ] , "," }
+Follow(O) = { ID, "{" , if, while, return, read, write, "}", else, *, / , + , - , <=, <, >, >=, ==, !=, ";" , ) , ] , "," }
+Follow(A') = { ) }

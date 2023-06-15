@@ -1,63 +1,72 @@
-P->D void ID ( void ) { L S return ; }
-D->E D
-D->ε
-E->T ID V'
-E->T ID ( N ) { L S return F G' H' I' ; }
-E->void ID ( N ) { L S return ; }
-V'->;
-V'->[ INTEGER ] ;
-T->int
-T->float
-T->string
-N->T ID C' B'
-N->void
-B'->, T ID C' B'
-B'->ε
-C'->[ ]
-C'->ε
-L->T ID V' L
-L->ε
-S->J S
-S->ε
-J->ID K' = M'
-J->O
-J->{ L S }
-J->if ( F G' H' I' ) J Q'
-J->while ( F G' H' I' ) J
-J->return R'
-J->read ID K' ;
-J->write F G' H' I' ;
-M'->F G' H' I' ;
-M'->STRING ;
-Q'->else J
-Q'->ε
-R'->;
-R'->F G' H' I' ;
-K'->[ F G' H' ]
-K'->ε
-I'->U F G' H'
-I'->ε
-U-><=
-U-><
-U->>
-U->>=
-U->==
-U->!=
-H'->ε
-H'->W F G' H'
-W->-
-W->+
-G'->ε
-G'->Y F G'
-Y->/
-Y->*
-F->Z
-F->O
-F->ID K'
-F->( F G' H' )
-Z->FLOAT
-Z->INTEGER
-O->ID ( F G' H' A' ) ;
-O->ID ( ) ;
-A'->, F G' H' A'
-A'->ε
+S->A void ID ( void ) H
+A->B A
+A->ε
+B->D ID B'
+B->void ID ( E ) H
+B'->C'
+B'->( E ) { I J return P ; }
+C->D ID C'
+C'->;
+C'->[ INTEGER ] ;
+D->int
+D->float
+D->string
+E->D ID G F
+E->void
+F->, D ID G F
+F->ε
+G->[ ]
+G->ε
+H->{ I J return ; }
+I->C I
+I->ε
+J->K J
+J->ε
+K->ID K'
+K->{ I J }
+K->if ( P ) K M
+K->while ( P ) K
+K->return N
+K->read ID O ;
+K->write P ;
+K'->O = L
+K'->( X ) ;
+L->P ;
+L->STRING ;
+M->else K
+M->ε
+N->;
+N->P ;
+O->[ R ]
+O->ε
+P->R P'
+P'->Q R
+P'->ε
+Q-><=
+Q-><
+Q->>
+Q->>=
+Q->==
+Q->!=
+R->T R'
+R'->Z T R'
+R'->ε
+Z->+
+Z->-
+T->V T'
+T'->U V T'
+T'->ε
+U->*
+U->/
+V->( R )
+V->ID V'
+V->W
+V'->[ R ]
+V'->( X ) ;
+V'->ε
+W->INTEGER
+W->FLOAT
+X->R Y
+X->ε
+Y->, R Y
+Y->ε

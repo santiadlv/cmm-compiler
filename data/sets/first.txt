@@ -1,25 +1,33 @@
-First(P) = { int, float, string, void }
-First(D) = { int, float, string, void, ε }
-First(E) = { int, float, string, void }
-First(V') = { ";" , [ }
-First(T) = { int, float, string }
-First(N) = { int, float, string, void }
-First(B') = { "," , ε }
-First(C') = { [ , ε }
-First(L) = { int, float, string, ε }
-First(S) = { ID, { , if, while, return, read, write, ε }
-First(J) = { ID, { , if, while, return, read, write }
-First(M') = { (, ID, INTEGER, FLOAT, STRING }
-First(Q') = { else, ε }
-First(R') = { ";" , ( , ID, INTEGER, FLOAT }
-First(K') = { [ , ε }
-First(I') = { <=, <, >, >=, ==, !=, ε }
-First(U) = { <=, <, >, >=, ==, != }
-First(H') =  { + , - , ε }
-First(W) = { +, - }
-First(G') = { * , /  ,ε }
-First(Y) =  { *, / }
-First(F) = { ( , ID, INTEGER, FLOAT }
-First(Z) = { INTEGER, FLOAT }
-First(O) = { ID }
-First(A') = { "," , ε }
+First(S)={ int float string void ε }
+First(A)={ int float string void ε }
+First(B)={ int float string void }
+First(B')={ ; [ ( }
+First(C)={ int float string }
+First(C')={ ; [ }
+First(D)={ int float string }
+First(E)={ int float string void }
+First(F)={ , ε }
+First(G)={ [ ε }
+First(H)={ { }
+First(I)={ int float string ε }
+First(J)={ ID { if while return read write ε  }
+First(K)={ ID { if while return read write }
+First(K')={ = [ ε (  }
+First(L)={ ( ID INTEGER FLOAT STRING }
+First(M)={ else ε }
+First(N)={ ; ( ID INTEGER FLOAT }
+First(O)={ [ ε }
+First(P)={ ( ID INTEGER FLOAT }
+First(P')={ <= < > >= == != ε  }
+First(Q)={ <= < > >= == !=  }
+First(R)={ ( ID INTEGER FLOAT  }
+First(R')={ + - ε }
+First(Z)={ + - }
+First(T)={ ( ID INTEGER FLOAT }
+First(T')={ * / ε  }
+First(U)={ * / }
+First(V)={ ( ID INTEGER FLOAT }
+First(V')={ [ ( ε }
+First(W)={ INTEGER FLOAT }
+First(X)={ + - ε }
+First(Y)={ , ε  }

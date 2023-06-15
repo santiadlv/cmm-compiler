@@ -1,25 +1,33 @@
-Follow(P) = { $ }
-Follow(D) = { void }
-Follow(E) = { int, float, string, void }
-Follow(V') = { int, float, string, void, ID, { , if, while, return, read, write, "}"  }
-Follow(T) = { ID }
-Follow(N) = { ) }
-Follow(B') = { ) }
-Follow(C') = {",", ) }
-Follow(L) = {  ID, { , if, while, return, read, write, "}" }
-Folllow(S) = { return, "}" }
-Follow(J) = { ID, "{" , if, while, return, read, write, "}", else }
-Follow(M') = { ID, "{" , if, while, return, read, write, "}", else }
-Follow(Q') = { ID, "{" , if, while, return, read, write, "}", else }
-Follow(R') = { ID, "{" , if, while, return, read, write, "}", else }
-Follow(K') = { =, *, / , + , - , <=, <, >, >=, ==, !=, ";" , ) , ] , "," }
-Follow(I') = { ";" , ) }
-Follow(U) = { ( , ID, INTEGER, FLOAT }
-Follow(H') = { <=, <, >, >=, ==, !=, ";" , ) , ] , "," }
-Follow(W) = { ( , ID, INTEGER, FLOAT }
-Follow(G') = { + , - , <=, <, >, >=, ==, !=, ";" , ) , ] , "," }
-Follow(Y) = { ( , ID, INTEGER, FLOAT }
-Follow(F) = { *, / , + , - , <=, <, >, >=, ==, !=, ";" , ) , ] , "," }
-Follow(Z) = { *, / , + , - , <=, <, >, >=, ==, !=, ";" , ) , ] , "," }
-Follow(O) = { ID, "{" , if, while, return, read, write, "}", else, *, / , + , - , <=, <, >, >=, ==, !=, ";" , ) , ] , "," }
-Follow(A') = { ) }
+Follow(S)={ $ }
+Follow(A)={ void }
+Follow(B)={ int float string void }
+Follow(B')={ int float string void }
+Follow(C)={ int float string ID { if while return read write } }
+Follow(C')={ int float string void ID { if while return read write } }
+Follow(D)={ ID }
+Follow(E)={ ) }
+Follow(F)={ ) }
+Follow(G)={ , ) }
+Follow(H)={ $ int float string void }
+Follow(I)={ ID { if while return read write } }
+Follow(J)={ return } }
+Follow(K)={ ID { if while return read write } else }
+Follow(K')={ ID { if while return read write } else }
+Follow(L)={ ID { if while return read write } else }
+Follow(M)={ ID { if while return read write } else }
+Follow(N)={ ID { if while return read write } else }
+Follow(O)={ ; = * / + - ] <= < > >= == != ) , }
+Follow(P)={ ; ) }
+Follow(P')={ ; ) }
+Follow(Q)={ ( ID INTEGER FLOAT  }
+Follow(R)={ ] <= < > >= == != ; ) , }
+Follow(R')={ ] <= < > >= == != ; ) , }
+Follow(Z)={ ( ID INTEGER FLOAT }
+Follow(T)={ ] <= < > >= == != ; ) , + - }
+Follow(T')={ ] <= < > >= == != ; ) , + - }
+Follow(U)={ ( ID INTEGER FLOAT }
+Follow(V)={ * / + - ] <= < > >= == != ; ) , }
+Follow(V')={ * / + - ] <= < > >= == != ; ) , }
+Follow(W)={ * / + - ] <= < > >= == != ; ) , }
+Follow(X)={ ) }
+Follow(Y)={ ) }
