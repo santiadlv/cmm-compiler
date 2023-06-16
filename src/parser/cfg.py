@@ -17,18 +17,20 @@ class CFG:
         self.symbols = self.symbol_sets[0]
         self.terminals = self.symbol_sets[1]
         self.non_terminals = self.symbol_sets[2]
-        self.production_terminals = self.symbol_sets[3]
+        self.rhs_productions = self.symbol_sets[3]
+        self.production_terminals = self.symbol_sets[4]
         self.table_set = self.create_parsing_table(
             self.terminals,
             self.non_terminals,
             self.num_productions,
             self.fp_sets,
             self.production_terminals,
-            self.simple_nt,
+            self.grammar_nt,
         )
         self.table = self.table_set[0]
         self.ordered_t = self.table_set[1]
-
+        self.ordered_nt = self.table_set[2]
+        self.adjust_table()
 
     def read_grammar(self) -> list:
         """
@@ -60,7 +62,6 @@ class CFG:
 
         return grammar_nt, simple_nt
 
-
     def read_productions(self) -> list:
         """
         _summary_.
@@ -75,7 +76,6 @@ class CFG:
             productions = f.read().splitlines()
 
         return productions
-
 
     def read_firstplus(self) -> list:
         """
@@ -99,7 +99,6 @@ class CFG:
 
         return fp_sets
 
-
     def number_productions(self, productions: list) -> dict:
         """
         _summary_.
@@ -119,7 +118,6 @@ class CFG:
 
         return num_productions
 
-
     def compute_symbols(self, productions: list) -> tuple:
         """
         _summary_.
@@ -133,14 +131,16 @@ class CFG:
         symbols = set()
         terminals = set()
         non_terminals = set()
+        rhs_productions = {}
         production_terminals = []
 
-        for production in productions:
+        for idx, production in enumerate(productions):
             prod = production.split("->")
             lhs = prod[0]
             rhs = prod[1]
             non_terminals.add(lhs)
             prod_rhs_symbols = rhs.split(" ")
+            rhs_productions[idx + 1] = prod_rhs_symbols
             production_terminals.append((lhs, prod_rhs_symbols))
 
             for symbol in prod_rhs_symbols:
@@ -151,9 +151,9 @@ class CFG:
             symbols,
             terminals,
             non_terminals,
+            rhs_productions,
             production_terminals,
         )
-
 
     def create_parsing_table(
         self,
@@ -162,7 +162,7 @@ class CFG:
         num_productions: dict,
         fp_sets: list,
         production_terminals: list,
-        simple_nt: list,
+        grammar_nt: list,
     ) -> tuple:
         """
         Create a parsing table for the given grammar for use in LL(1) parser.
@@ -173,7 +173,7 @@ class CFG:
             num_productions (dict): List of numbered productions.
             fp_sets (list): List of first plus sets.
             production_terminals (list): List of production terminals.
-            simple_nt (list): List of simplified non terminal symbols.
+            grammar_nt (list): List of non terminal symbols.
 
         Returns:
             tuple: Both the parsing table and the ordered terminals.
@@ -182,7 +182,7 @@ class CFG:
         ordered_t = sorted(terminals)
         ordered_t.append("$")
 
-        ordering = {nt: i for i, nt in enumerate(simple_nt)}
+        ordering = {nt: i for i, nt in enumerate(grammar_nt)}
         ordered_nt = sorted(list(non_terminals), key=lambda nt: ordering[nt])
 
         for nt in ordered_nt:
@@ -197,8 +197,14 @@ class CFG:
                     continue
                 table[pt[0]][terminal] = num_productions[prod]
 
-        return table, ordered_t
-
+        return table, ordered_t, ordered_nt
+    
+    def adjust_table(self) -> None:
+        """Adjust the parsing table to account for grammar changes."""
+        self.table['declaration_list']['void'] = 2
+        self.table["term'"]['ID'] = 58
+        self.table["arithmetic_expression'"]['ID'] = 53
+        self.table["expression'"]['ID'] = 44
 
     def export_table(self) -> None:
         """Generate a CSV file of the parsing table."""
