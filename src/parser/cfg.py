@@ -189,12 +189,15 @@ class CFG:
             table[nt] = {}
 
             for terminal in ordered_t:
+                # Fill table with error messages
                 table[nt][terminal] = "ERROR"
 
         for prod, fp_set, pt in zip(num_productions, fp_sets, production_terminals):
             for terminal in fp_set:
                 if terminal == "ε":
+                    # Do nothing if epsilon is found
                     continue
+                # Fill table of each production with terminals from first plus sets
                 table[pt[0]][terminal] = num_productions[prod]
 
         return table, ordered_t, ordered_nt
