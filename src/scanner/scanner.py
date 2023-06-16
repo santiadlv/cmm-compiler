@@ -168,26 +168,26 @@ class Scanner:
                     if dfa.is_identifier(state):
                         # If token is a keyword
                         if tkn.is_keyword(token.lower()):
-                            cls.output.append((tkn.token_ids[token.lower()]))
+                            cls.output.append((tkn.token_ids[token.lower()], ))
                         else:
                             # If token is not a keyword
                             cls.add_token_to_symbol_table(token, cls.id_symbol_table)
                             cls.add_symbol_to_output(
-                                token, cls.id_symbol_table, "IDENTIFIER"
+                                token, cls.id_symbol_table, "ID"
                             )
                     elif dfa.is_integer(state):
                         # Cast token in case it is an integer constant
                         token = int(token)
                         cls.add_token_to_symbol_table(token, cls.int_symbol_table)
                         cls.add_symbol_to_output(
-                            token, cls.int_symbol_table, "INT_CONST"
+                            token, cls.int_symbol_table, "INTEGER"
                         )
                     elif dfa.is_float(state):
                         # Cast token in case it is a floating point constant
                         token = float(token)
                         cls.add_token_to_symbol_table(token, cls.float_symbol_table)
                         cls.add_symbol_to_output(
-                            token, cls.float_symbol_table, "FLOAT_CONST"
+                            token, cls.float_symbol_table, "FLOAT"
                         )
                     elif dfa.is_string(state):
                         # If token is a string, persist and reset offset
@@ -205,7 +205,7 @@ class Scanner:
                         # )
                     else:
                         # Search the token's ID and persist to output
-                        cls.output.append((tkn.token_ids[token]))
+                        cls.output.append((tkn.token_ids[token], ))
 
                     # Reset both state and token variables for next character
                     state = 0

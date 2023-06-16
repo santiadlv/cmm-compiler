@@ -26,7 +26,7 @@ class Tokens:
         cls.special_characters: dict = dict.fromkeys([*'+-*/<>=!;,".()[]{}']).keys()
         cls.complex_characters: dict = dict.fromkeys(["<=", ">=", "==", "!="]).keys()
         cls.symbols: dict = dict.fromkeys(
-            ["IDENTIFIER", "INT_CONST", "FLOAT_CONST", "STRING", "COMMENT"]
+            ["ID", "INTEGER", "FLOAT", "STRING", "COMMENT"]
         ).keys()
         cls.keywords: dict = dict.fromkeys(
             [
@@ -49,6 +49,9 @@ class Tokens:
         cls.token_ids: dict = dict(
             zip(cls.token_list, list(range(1, cls.token_list_size + 1)))
         )
+        cls.tokens_by_id: dict = dict(
+            zip(list(range(1, cls.token_list_size + 1)), cls.token_list)
+        )
 
     def get_token_list(cls) -> list[list, list, list, list]:
         """
@@ -62,6 +65,7 @@ class Tokens:
             + list(cls.special_characters)
             + list(cls.complex_characters)
             + list(cls.symbols)
+            + list("$")
         )
 
     def is_letter(cls, char: str) -> bool:
