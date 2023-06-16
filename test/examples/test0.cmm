@@ -1,0 +1,10 @@
+float foo(int bar) { 
+    return (10 * bar);
+}
+
+void main(void) {
+    float x;
+    x = foo(10);
+    write(x);
+    return ;
+}

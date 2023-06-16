@@ -32,9 +32,10 @@
     ">=": 31,
     "==": 32,
     "!=": 33,
-    "IDENTIFIER": 34,
-    "INT_CONST": 35,
-    "FLOAT_CONST": 36,
+    "ID": 34,
+    "INTEGER": 35,
+    "FLOAT": 36,
     "STRING": 37,
-    "COMMENT": 38
+    "COMMENT": 38,
+    "$": 39
 }

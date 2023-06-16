@@ -47,7 +47,7 @@ void readArray(void){
 
     s = "Enter a float number: ";
     write(s);
-    read(f1);
+    read f1;
     while (i < 10){
         s = "Enter an integer number: ";
         write(s);

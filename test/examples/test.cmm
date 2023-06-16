@@ -1,0 +1,6 @@
+void fun(void) {
+    float f;
+    return ;
+}
+
+int x;
